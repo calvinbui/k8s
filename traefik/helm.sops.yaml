@@ -1,0 +1,102 @@
+---
+
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  interval: 5m
+  url: oci://ghcr.io/traefik/helm/traefik
+  ref:
+    tag: 37.1.1
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+sops:
+  age:
+    - recipient: age1mz6mvlp9fu44qpr29lrpuw57y9akt8upx7w43zdz83kgatnufu7q7mvtvr
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB3MGMycm1VK2VlTjAyTWJw
+        VzlCeFJ5UFRlNW9SM1RWM0h5UzFPNVJjVlVFCjMzcTFjYTJLbVhkelRERmt3UnZN
+        RXRBaHJ4U0NxdkxTenJuTjllNXBrbkEKLS0tIDZXSkJxbzJDL2U2UDQ0a1ZnSUJO
+        cWZWZVJXdFFkcW5UdFV4Rm1QS3ptemcKpGP2pr41hauezq+/IcOQZielkKT8jhXP
+        qcA2K/27NapFIcWk0qmZX+Kp5I64Vv6xsGm3j7lOIe47yGSxRSZr9A==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-09-26T10:32:48Z"
+  mac: ENC[AES256_GCM,data:h8f9JWy/Lg1eEGupwlJcItZdWgYxlHh1z0bbYjNbuc3jaMVFZq4C2VN4fT3P/4iAn8LHMOGGKL5Yep/ChNVEbY7UjyW9LbJccn/XzmnHQoOXyzpOkKZ1y/jt7wm3ffmx+aefRLkaC71HHcCceXQuf03vDFWQyhlTv2vDAGg79PQ=,iv:o6RxSdZNfoHRVuytvgzQ9O/M3DYMvgtC0Xi4LZVwa3I=,tag:LIdpJ6KGAkdSO4kti5PPGQ==,type:str]
+  encrypted_regex: ^(data|hostname|hostnames)$
+  version: 3.10.2
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  interval: 5s
+  chartRef:
+    kind: OCIRepository
+    name: traefik
+    namespace: traefik
+  values:
+    global:
+      checkNewVersion: false
+      sendAnonymousUsage: false
+    ingressRoute:
+      dashboard:
+        enabled: true
+    providers:
+      kubernetesGateway:
+        enabled: true
+    ports:
+      web:
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+            permanent: true
+      websecure:
+        http3:
+          enabled: true
+          advertisedPort: 443
+    gateway:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      listeners:
+        web:
+          hostname: ENC[AES256_GCM,data:ys0H6auerSY=,iv:vS3KLhFvF7Y5b9fy1rTxcvKwQP8mMA5zJtW6cX7nsrE=,tag:RlKAimhY4ZybrYEd9UniXQ==,type:str]
+          namespacePolicy:
+            from: All
+        websecure:
+          port: 8443
+          protocol: HTTPS
+          hostname: ENC[AES256_GCM,data:xPhNSobkl9A=,iv:IpHWmysuniadDqXsuBQJxJyWPS+rCJGVuPvMRHir3GY=,tag:XCJZLtmsCsJhyuQgAPFY7A==,type:str]
+          namespacePolicy:
+            from: All
+          certificateRefs:
+            - name: traefik-tls
+          mode: Terminate
+    service:
+      annotations:
+        oci.oraclecloud.com/load-balancer-type: nlb
+        service.beta.kubernetes.io/oci-load-balancer-internal: "false"
+        # https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm#loadbalancing
+        service.beta.kubernetes.io/oci-load-balancer-shape: flexible
+        service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+        service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
+sops:
+  age:
+    - recipient: age1mz6mvlp9fu44qpr29lrpuw57y9akt8upx7w43zdz83kgatnufu7q7mvtvr
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB3MGMycm1VK2VlTjAyTWJw
+        VzlCeFJ5UFRlNW9SM1RWM0h5UzFPNVJjVlVFCjMzcTFjYTJLbVhkelRERmt3UnZN
+        RXRBaHJ4U0NxdkxTenJuTjllNXBrbkEKLS0tIDZXSkJxbzJDL2U2UDQ0a1ZnSUJO
+        cWZWZVJXdFFkcW5UdFV4Rm1QS3ptemcKpGP2pr41hauezq+/IcOQZielkKT8jhXP
+        qcA2K/27NapFIcWk0qmZX+Kp5I64Vv6xsGm3j7lOIe47yGSxRSZr9A==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-09-26T10:32:48Z"
+  mac: ENC[AES256_GCM,data:h8f9JWy/Lg1eEGupwlJcItZdWgYxlHh1z0bbYjNbuc3jaMVFZq4C2VN4fT3P/4iAn8LHMOGGKL5Yep/ChNVEbY7UjyW9LbJccn/XzmnHQoOXyzpOkKZ1y/jt7wm3ffmx+aefRLkaC71HHcCceXQuf03vDFWQyhlTv2vDAGg79PQ=,iv:o6RxSdZNfoHRVuytvgzQ9O/M3DYMvgtC0Xi4LZVwa3I=,tag:LIdpJ6KGAkdSO4kti5PPGQ==,type:str]
+  encrypted_regex: ^(data|hostname|hostnames)$
+  version: 3.10.2
