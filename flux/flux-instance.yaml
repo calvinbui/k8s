@@ -16,7 +16,6 @@ spec:
 
   components:
     - source-controller
-    - kustomize-controller
     - helm-controller
 
   cluster:
