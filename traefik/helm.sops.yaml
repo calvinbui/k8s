@@ -4,7 +4,6 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: traefik
-  namespace: traefik
 spec:
   interval: 5m
   url: oci://ghcr.io/traefik/helm/traefik
@@ -23,8 +22,8 @@ sops:
         cWZWZVJXdFFkcW5UdFV4Rm1QS3ptemcKpGP2pr41hauezq+/IcOQZielkKT8jhXP
         qcA2K/27NapFIcWk0qmZX+Kp5I64Vv6xsGm3j7lOIe47yGSxRSZr9A==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-09-26T10:32:48Z"
-  mac: ENC[AES256_GCM,data:h8f9JWy/Lg1eEGupwlJcItZdWgYxlHh1z0bbYjNbuc3jaMVFZq4C2VN4fT3P/4iAn8LHMOGGKL5Yep/ChNVEbY7UjyW9LbJccn/XzmnHQoOXyzpOkKZ1y/jt7wm3ffmx+aefRLkaC71HHcCceXQuf03vDFWQyhlTv2vDAGg79PQ=,iv:o6RxSdZNfoHRVuytvgzQ9O/M3DYMvgtC0Xi4LZVwa3I=,tag:LIdpJ6KGAkdSO4kti5PPGQ==,type:str]
+  lastmodified: "2025-09-29T06:18:46Z"
+  mac: ENC[AES256_GCM,data:HlXFVk4sLWlASNwOB/OrOUsElTzzEE23rH2GXUcTvdpxxbWt18jfIMNWE5XqmXmjuVnnw540gf9P0VSHDLxhs/Q1o+9Tox6M8d1TIrhkqZ0dhCTgADEk9lb8KQJJn64JdAsMHSwoC1CQLPcw+a7LYjhhJtCeacRMF1B5aGsRG0o=,iv:LcvfbghgBrSJMp9nE47kdOUDSj0+h0UrUXKpe9GtaCY=,tag:wYMJePiBAKKDEGl7NT9lgg==,type:str]
   encrypted_regex: ^(data|hostname|hostnames)$
   version: 3.10.2
 ---
@@ -32,13 +31,11 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: traefik
-  namespace: traefik
 spec:
   interval: 5s
   chartRef:
     kind: OCIRepository
     name: traefik
-    namespace: traefik
   values:
     global:
       checkNewVersion: false
@@ -96,7 +93,7 @@ sops:
         cWZWZVJXdFFkcW5UdFV4Rm1QS3ptemcKpGP2pr41hauezq+/IcOQZielkKT8jhXP
         qcA2K/27NapFIcWk0qmZX+Kp5I64Vv6xsGm3j7lOIe47yGSxRSZr9A==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-09-26T10:32:48Z"
-  mac: ENC[AES256_GCM,data:h8f9JWy/Lg1eEGupwlJcItZdWgYxlHh1z0bbYjNbuc3jaMVFZq4C2VN4fT3P/4iAn8LHMOGGKL5Yep/ChNVEbY7UjyW9LbJccn/XzmnHQoOXyzpOkKZ1y/jt7wm3ffmx+aefRLkaC71HHcCceXQuf03vDFWQyhlTv2vDAGg79PQ=,iv:o6RxSdZNfoHRVuytvgzQ9O/M3DYMvgtC0Xi4LZVwa3I=,tag:LIdpJ6KGAkdSO4kti5PPGQ==,type:str]
+  lastmodified: "2025-09-29T06:18:46Z"
+  mac: ENC[AES256_GCM,data:HlXFVk4sLWlASNwOB/OrOUsElTzzEE23rH2GXUcTvdpxxbWt18jfIMNWE5XqmXmjuVnnw540gf9P0VSHDLxhs/Q1o+9Tox6M8d1TIrhkqZ0dhCTgADEk9lb8KQJJn64JdAsMHSwoC1CQLPcw+a7LYjhhJtCeacRMF1B5aGsRG0o=,iv:LcvfbghgBrSJMp9nE47kdOUDSj0+h0UrUXKpe9GtaCY=,tag:wYMJePiBAKKDEGl7NT9lgg==,type:str]
   encrypted_regex: ^(data|hostname|hostnames)$
   version: 3.10.2
