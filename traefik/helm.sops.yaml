@@ -40,6 +40,8 @@ spec:
     global:
       checkNewVersion: false
       sendAnonymousUsage: false
+    deployment:
+      replicas: 3
     ingressRoute:
       dashboard:
         enabled: true
