@@ -22,8 +22,8 @@ sops:
         cWZWZVJXdFFkcW5UdFV4Rm1QS3ptemcKpGP2pr41hauezq+/IcOQZielkKT8jhXP
         qcA2K/27NapFIcWk0qmZX+Kp5I64Vv6xsGm3j7lOIe47yGSxRSZr9A==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-09-29T06:18:46Z"
-  mac: ENC[AES256_GCM,data:HlXFVk4sLWlASNwOB/OrOUsElTzzEE23rH2GXUcTvdpxxbWt18jfIMNWE5XqmXmjuVnnw540gf9P0VSHDLxhs/Q1o+9Tox6M8d1TIrhkqZ0dhCTgADEk9lb8KQJJn64JdAsMHSwoC1CQLPcw+a7LYjhhJtCeacRMF1B5aGsRG0o=,iv:LcvfbghgBrSJMp9nE47kdOUDSj0+h0UrUXKpe9GtaCY=,tag:wYMJePiBAKKDEGl7NT9lgg==,type:str]
+  lastmodified: "2025-09-30T13:44:44Z"
+  mac: ENC[AES256_GCM,data:7+2lEvFunTmGfOZtOEViMuP90xI606PM6stu7D0LOuRDLV0DzwnvJLFXH9kkvQIrGZsQUAgZwqO7Zw2eqSOMCK5K5H3nthyN23H5qvQPW1cRjOzLZLrvB6ktE4xRDp0YsAeEi4LXkWVsdBaVu9SGIx9EVCak52DY4nmz2l1ydSs=,iv:R8rBZEyGwSzXBL43cjXFuaAX5Goycc17ELZQgsqyr4Q=,tag:nggzCHGrHcdZyHLRdpQxaQ==,type:str]
   encrypted_regex: ^(data|hostname|hostnames)$
   version: 3.10.2
 ---
@@ -41,7 +41,7 @@ spec:
       checkNewVersion: false
       sendAnonymousUsage: false
     deployment:
-      replicas: 3
+      replicas: 1
     ingressRoute:
       dashboard:
         enabled: true
@@ -95,7 +95,7 @@ sops:
         cWZWZVJXdFFkcW5UdFV4Rm1QS3ptemcKpGP2pr41hauezq+/IcOQZielkKT8jhXP
         qcA2K/27NapFIcWk0qmZX+Kp5I64Vv6xsGm3j7lOIe47yGSxRSZr9A==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-09-29T06:18:46Z"
-  mac: ENC[AES256_GCM,data:HlXFVk4sLWlASNwOB/OrOUsElTzzEE23rH2GXUcTvdpxxbWt18jfIMNWE5XqmXmjuVnnw540gf9P0VSHDLxhs/Q1o+9Tox6M8d1TIrhkqZ0dhCTgADEk9lb8KQJJn64JdAsMHSwoC1CQLPcw+a7LYjhhJtCeacRMF1B5aGsRG0o=,iv:LcvfbghgBrSJMp9nE47kdOUDSj0+h0UrUXKpe9GtaCY=,tag:wYMJePiBAKKDEGl7NT9lgg==,type:str]
+  lastmodified: "2025-09-30T13:44:44Z"
+  mac: ENC[AES256_GCM,data:7+2lEvFunTmGfOZtOEViMuP90xI606PM6stu7D0LOuRDLV0DzwnvJLFXH9kkvQIrGZsQUAgZwqO7Zw2eqSOMCK5K5H3nthyN23H5qvQPW1cRjOzLZLrvB6ktE4xRDp0YsAeEi4LXkWVsdBaVu9SGIx9EVCak52DY4nmz2l1ydSs=,iv:R8rBZEyGwSzXBL43cjXFuaAX5Goycc17ELZQgsqyr4Q=,tag:nggzCHGrHcdZyHLRdpQxaQ==,type:str]
   encrypted_regex: ^(data|hostname|hostnames)$
   version: 3.10.2
