@@ -1,5 +1,4 @@
 ---
-
 # requires flux-operator
 #
 # https://fluxcd.control-plane.io/operator/flux-config/
@@ -17,6 +16,7 @@ spec:
   components:
     - source-controller
     - helm-controller
+    - kustomize-controller
 
   cluster:
     type: kubernetes

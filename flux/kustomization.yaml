@@ -1,5 +1,4 @@
 ---
-
 # 1. Install manually using helm:
 #
 #   $ helm upgrade \
