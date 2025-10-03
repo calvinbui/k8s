@@ -22,8 +22,8 @@ sops:
         cWZWZVJXdFFkcW5UdFV4Rm1QS3ptemcKpGP2pr41hauezq+/IcOQZielkKT8jhXP
         qcA2K/27NapFIcWk0qmZX+Kp5I64Vv6xsGm3j7lOIe47yGSxRSZr9A==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-09-30T13:44:44Z"
-  mac: ENC[AES256_GCM,data:7+2lEvFunTmGfOZtOEViMuP90xI606PM6stu7D0LOuRDLV0DzwnvJLFXH9kkvQIrGZsQUAgZwqO7Zw2eqSOMCK5K5H3nthyN23H5qvQPW1cRjOzLZLrvB6ktE4xRDp0YsAeEi4LXkWVsdBaVu9SGIx9EVCak52DY4nmz2l1ydSs=,iv:R8rBZEyGwSzXBL43cjXFuaAX5Goycc17ELZQgsqyr4Q=,tag:nggzCHGrHcdZyHLRdpQxaQ==,type:str]
+  lastmodified: "2025-10-03T13:58:02Z"
+  mac: ENC[AES256_GCM,data:+e51j6I4/yXPF9h3KnNqNVNrs1RTq+x+2RgMkdTkOOOSkSgwU1U6VoIFnEUacqWRexBdot9NI2ZX6IegcVqPgCDrioCUegGeQdouvy21IsP2x5EXuaZZuQIXqS4AsVRvkiZAayPNJKPlaAaF1TaSO8yyHT9y5Qm8c/puNxsNCC8=,iv:OrKXnwG0lnOAcQ1Q4QwjQvgW7t4XRsZqaNZhHFceuGg=,tag:UipvzNZGJwapYVWTTrfCwA==,type:str]
   encrypted_regex: ^(data|hostname|hostnames)$
   version: 3.10.2
 ---
@@ -57,8 +57,10 @@ spec:
             permanent: true
       websecure:
         http3:
-          enabled: true
-          advertisedPort: 443
+          enabled: false
+    logs:
+      access:
+        enabled: true
     gateway:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
@@ -80,10 +82,6 @@ spec:
       annotations:
         oci.oraclecloud.com/load-balancer-type: nlb
         service.beta.kubernetes.io/oci-load-balancer-internal: "false"
-        # https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm#loadbalancing
-        service.beta.kubernetes.io/oci-load-balancer-shape: flexible
-        service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
-        service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
 sops:
   age:
     - recipient: age1mz6mvlp9fu44qpr29lrpuw57y9akt8upx7w43zdz83kgatnufu7q7mvtvr
@@ -95,7 +93,7 @@ sops:
         cWZWZVJXdFFkcW5UdFV4Rm1QS3ptemcKpGP2pr41hauezq+/IcOQZielkKT8jhXP
         qcA2K/27NapFIcWk0qmZX+Kp5I64Vv6xsGm3j7lOIe47yGSxRSZr9A==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-09-30T13:44:44Z"
-  mac: ENC[AES256_GCM,data:7+2lEvFunTmGfOZtOEViMuP90xI606PM6stu7D0LOuRDLV0DzwnvJLFXH9kkvQIrGZsQUAgZwqO7Zw2eqSOMCK5K5H3nthyN23H5qvQPW1cRjOzLZLrvB6ktE4xRDp0YsAeEi4LXkWVsdBaVu9SGIx9EVCak52DY4nmz2l1ydSs=,iv:R8rBZEyGwSzXBL43cjXFuaAX5Goycc17ELZQgsqyr4Q=,tag:nggzCHGrHcdZyHLRdpQxaQ==,type:str]
+  lastmodified: "2025-10-03T13:58:02Z"
+  mac: ENC[AES256_GCM,data:+e51j6I4/yXPF9h3KnNqNVNrs1RTq+x+2RgMkdTkOOOSkSgwU1U6VoIFnEUacqWRexBdot9NI2ZX6IegcVqPgCDrioCUegGeQdouvy21IsP2x5EXuaZZuQIXqS4AsVRvkiZAayPNJKPlaAaF1TaSO8yyHT9y5Qm8c/puNxsNCC8=,iv:OrKXnwG0lnOAcQ1Q4QwjQvgW7t4XRsZqaNZhHFceuGg=,tag:UipvzNZGJwapYVWTTrfCwA==,type:str]
   encrypted_regex: ^(data|hostname|hostnames)$
   version: 3.10.2
