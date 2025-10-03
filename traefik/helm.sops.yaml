@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: traefik
 spec:
-  interval: 5m
+  interval: 24h
   url: oci://ghcr.io/traefik/helm/traefik
   ref:
     tag: 37.1.1

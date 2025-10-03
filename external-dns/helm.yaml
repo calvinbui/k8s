@@ -5,7 +5,7 @@ kind: HelmRepository
 metadata:
   name: external-dns
 spec:
-  interval: 5m
+  interval: 24h
   url: https://kubernetes-sigs.github.io/external-dns/
 
 ---
