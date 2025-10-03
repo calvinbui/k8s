@@ -22,7 +22,7 @@ spec:
         kind: HelmRepository
         name: longhorn
       chart: longhorn
-      version: 1.9.1
+      version: 1.10.0
   values:
     persistence:
       defaultClassReplicaCount: 2
@@ -38,4 +38,7 @@ spec:
       replicas: 1
 
     defaultSettings:
-      defaultReplicaCount: 2
+      allowCollectingLonghornUsageMetrics: false
+      defaultReplicaCount: "2"
+      deletingConfirmationFlag: true
+      storageMinimalAvailablePercentage: "10"
