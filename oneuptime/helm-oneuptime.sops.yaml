@@ -1,0 +1,177 @@
+---
+
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: oneuptime
+spec:
+  interval: 24h
+  url: https://github.com/OneUptime/oneuptime/
+  ref:
+    commit: 83286aa34d421db84c4b295df2f424d9ea5f88c3
+  sparseCheckout:
+    - HelmChart
+sops:
+  age:
+    - recipient: age1mz6mvlp9fu44qpr29lrpuw57y9akt8upx7w43zdz83kgatnufu7q7mvtvr
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAyV2JFc1E4VFBGSmxnSS9Y
+        bUh2NGd2Z1NEMnBMakxvcHR4RFdsVC84UENJCmZETHR4RzlERXZQditiR0xFOTFK
+        M0NDdXNTN2JrRWZpQUVobEhvby9rZFEKLS0tIERBWVhRZzF3c2JWc3A2SUhmd3Bi
+        S0FyaXNkSnlhSWkzaUVaVFcvQU1HaXcK1fgXI6IkOhE93X7cQqPbdGy3wj0lQocC
+        MV6nj8YetvDfzfvNLyU5jMR69JCIBC26mlZqSWuPEZTnjTZzz8OVFw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-10-03T13:35:14Z"
+  mac: ENC[AES256_GCM,data:WEkI+9hIsLZthXilW+QxNe8YCE1ILuecssRamC3+zjfvijJF/HCuaiIxkC6Dc2IqhHCarx2amVsLzKtIodZqRQW3To3bSGd1irmb1VOBN4lK1na9d6VW3F1exd5kxxXOxGyNoo70kLJkWtWjSZd8UsU1XQJc45tjS7u7Q/DHKzQ=,iv:U6PFqU+9RoVqg71/4sqj1gSS8v1vULzwsF+1FNmH0VY=,tag:0OaE10i6hdG3tYwFvjYZtA==,type:str]
+  encrypted_regex: ^(data|hostname|hostnames|host)$
+  version: 3.10.2
+
+---
+
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: oneuptime
+spec:
+  interval: 5s
+  timeout: 30m
+  chart:
+    spec:
+      sourceRef:
+        kind: GitRepository
+        name: oneuptime
+      chart: ./HelmChart/Public/oneuptime
+  install:
+    disableSchemaValidation: true
+  upgrade:
+    disableSchemaValidation: true
+  values:
+    global:
+      storageClass: longhorn
+    host: ENC[AES256_GCM,data:SyG+14qgHjmO0HIIWq1sBg==,iv:m31xftRKWTraa/ekzBS3O4h+ZsLo+RGnsxXuY+0jf/Q=,tag:S7fnJtEli2O0PXiDA1qlMA==,type:str]
+    httpProtocol: https
+    deployment:
+      replicaCount: 0
+      updateStrategy:
+        type: Recreate
+      includeTimestampLabel: false
+    nginx:
+      replicaCount: 1
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+      service:
+        type: ClusterIP
+    postgresql:
+      enabled: false
+    clickhouse:
+      image:
+        tag: 25.8.8.26
+      persistence:
+        size: 8Gi
+    redis:
+      image:
+        repository: ghcr.io/valkey-io/valkey
+        tag: 8.1.3
+    image:
+      registry: ghcr.io
+      pullPolicy: IfNotPresent
+      tag: 8.0.5239
+    statusPage:
+      replicaCount: 1
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    probes:
+      one:
+        replicaCount: 1
+        disableTelemetryCollection: true
+        disableAutoscaler: true
+    openTelemetryCollector:
+      replicaCount: 0
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    accounts:
+      replicaCount: 1
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    home:
+      replicaCount: 0
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    dashboard:
+      replicaCount: 1
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    adminDashboard:
+      replicaCount: 1
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    worker:
+      replicaCount: 1
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    workflow:
+      replicaCount: 0
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    apiReference:
+      replicaCount: 0
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    docs:
+      replicaCount: 0
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    app:
+      replicaCount: 1
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    probeIngest:
+      replicaCount: 1
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    openTelemetryIngest:
+      replicaCount: 0
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    fluentIngest:
+      replicaCount: 0
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    incomingRequestIngest:
+      replicaCount: 0
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    isolatedVM:
+      replicaCount: 0
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    serverMonitorIngest:
+      replicaCount: 0
+      disableTelemetryCollection: true
+      disableAutoscaler: true
+    externalPostgres:
+      host: ENC[AES256_GCM,data:HPSMjTQnW90OCYs2zoALPHyLQQ==,iv:GYg3SSDvXd24mGUW4S5TBBGV49GdKmT7FtnkS20gnxM=,tag:F1ExNrYsVzsvzWCoO5hTMg==,type:str]
+      port: 5432
+      username: postgres
+      existingSecret:
+        name: postgres-cluster-app
+        passwordKey: password
+      database: oneuptimedb
+    keda:
+      enabled: false
+sops:
+  age:
+    - recipient: age1mz6mvlp9fu44qpr29lrpuw57y9akt8upx7w43zdz83kgatnufu7q7mvtvr
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAyV2JFc1E4VFBGSmxnSS9Y
+        bUh2NGd2Z1NEMnBMakxvcHR4RFdsVC84UENJCmZETHR4RzlERXZQditiR0xFOTFK
+        M0NDdXNTN2JrRWZpQUVobEhvby9rZFEKLS0tIERBWVhRZzF3c2JWc3A2SUhmd3Bi
+        S0FyaXNkSnlhSWkzaUVaVFcvQU1HaXcK1fgXI6IkOhE93X7cQqPbdGy3wj0lQocC
+        MV6nj8YetvDfzfvNLyU5jMR69JCIBC26mlZqSWuPEZTnjTZzz8OVFw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-10-03T13:35:14Z"
+  mac: ENC[AES256_GCM,data:WEkI+9hIsLZthXilW+QxNe8YCE1ILuecssRamC3+zjfvijJF/HCuaiIxkC6Dc2IqhHCarx2amVsLzKtIodZqRQW3To3bSGd1irmb1VOBN4lK1na9d6VW3F1exd5kxxXOxGyNoo70kLJkWtWjSZd8UsU1XQJc45tjS7u7Q/DHKzQ=,iv:U6PFqU+9RoVqg71/4sqj1gSS8v1vULzwsF+1FNmH0VY=,tag:0OaE10i6hdG3tYwFvjYZtA==,type:str]
+  encrypted_regex: ^(data|hostname|hostnames|host)$
+  version: 3.10.2

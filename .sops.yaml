@@ -1,10 +1,10 @@
 ---
 
 creation_rules:
-  -
+  - 
     path_regex: '.*\.ya?ml$'
-    age: 'age1mz6mvlp9fu44qpr29lrpuw57y9akt8upx7w43zdz83kgatnufu7q7mvtvr'
-    encrypted_regex: '^(data|hostname|hostnames)$'
+    age: "age1mz6mvlp9fu44qpr29lrpuw57y9akt8upx7w43zdz83kgatnufu7q7mvtvr"
+    encrypted_regex: "^(data|hostname|hostnames|host)$"
 
 stores:
   yaml:
