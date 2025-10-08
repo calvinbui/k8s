@@ -24,6 +24,9 @@ spec:
       chart: longhorn
       version: 1.10.0
   values:
+    global:
+      imageRegistry: docker.io
+
     persistence:
       defaultClassReplicaCount: 2
       reclaimPolicy: Retain

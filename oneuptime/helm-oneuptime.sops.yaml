@@ -66,6 +66,7 @@ spec:
       enabled: false
     clickhouse:
       image:
+        repository: docker.io/clickhouse/clickhouse-server
         tag: 25.8.8.26
       persistence:
         size: 8Gi
@@ -171,7 +172,7 @@ sops:
         S0FyaXNkSnlhSWkzaUVaVFcvQU1HaXcK1fgXI6IkOhE93X7cQqPbdGy3wj0lQocC
         MV6nj8YetvDfzfvNLyU5jMR69JCIBC26mlZqSWuPEZTnjTZzz8OVFw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-03T13:35:14Z"
-  mac: ENC[AES256_GCM,data:WEkI+9hIsLZthXilW+QxNe8YCE1ILuecssRamC3+zjfvijJF/HCuaiIxkC6Dc2IqhHCarx2amVsLzKtIodZqRQW3To3bSGd1irmb1VOBN4lK1na9d6VW3F1exd5kxxXOxGyNoo70kLJkWtWjSZd8UsU1XQJc45tjS7u7Q/DHKzQ=,iv:U6PFqU+9RoVqg71/4sqj1gSS8v1vULzwsF+1FNmH0VY=,tag:0OaE10i6hdG3tYwFvjYZtA==,type:str]
+  lastmodified: "2025-10-08T05:41:49Z"
+  mac: ENC[AES256_GCM,data:u3tEM4fMx7Mambz8stOkCbwwZyYNfga7I8WZvWKTTiaA4XeKs+2DOLWGgO7PJANOFpXLGpydA3CbKmJf6ac7RV2T2G/j7JuWViE68u2cSq9Yoxt0E7KAg93T822ULZyMaU7au4iQRV7NS5PFqkjnvduoLw+IsKeicp26fpfrpWw=,iv:B7ojCmAv1rgM0LtQk5qg6f2naesF0H9RHXxc+KSBE3I=,tag:MYPWRdtI6Pnr7Lg2xaszfQ==,type:str]
   encrypted_regex: ^(data|hostname|hostnames|host)$
   version: 3.10.2
