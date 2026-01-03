@@ -21,6 +21,12 @@ $ kustomize build --enable-alpha-plugins --enable-exec . | kubectl apply -f -
 
 Running `kubectl apply -k` does not work as it cannot use the `--enable-xxx` flags.
 
+Delete resources in the same way:
+
+```
+$ kustomize build --enable-alpha-plugins --enable-exec . | kubectl delete -f -
+```
+
 ## Secret Management with SOPS and Age
 
 `SOPS` (Secrets OPerationS) is an open-source tool developed by Mozilla for managing secrets. SOPS itself doesn't perform the encryption; instead, it acts as a manager that uses other robust encryption tools to do the heavy lifting.
