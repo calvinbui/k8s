@@ -1,5 +1,3 @@
----
-
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
@@ -22,8 +20,8 @@ sops:
         cWZWZVJXdFFkcW5UdFV4Rm1QS3ptemcKpGP2pr41hauezq+/IcOQZielkKT8jhXP
         qcA2K/27NapFIcWk0qmZX+Kp5I64Vv6xsGm3j7lOIe47yGSxRSZr9A==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-03T13:58:02Z"
-  mac: ENC[AES256_GCM,data:+e51j6I4/yXPF9h3KnNqNVNrs1RTq+x+2RgMkdTkOOOSkSgwU1U6VoIFnEUacqWRexBdot9NI2ZX6IegcVqPgCDrioCUegGeQdouvy21IsP2x5EXuaZZuQIXqS4AsVRvkiZAayPNJKPlaAaF1TaSO8yyHT9y5Qm8c/puNxsNCC8=,iv:OrKXnwG0lnOAcQ1Q4QwjQvgW7t4XRsZqaNZhHFceuGg=,tag:UipvzNZGJwapYVWTTrfCwA==,type:str]
+  lastmodified: "2026-01-02T23:34:49Z"
+  mac: ENC[AES256_GCM,data:EklIb40Rcx3V11unlSlU9yAEYkV5+CVLIq4Jv1pZJR+POnn3HmHZrFGwb2WKwX5YjD+IGOK1MHeBrWAa1W7gjMOIhL5bLAkq1szsqCTY37SBBstMd9f19W51YQg7VE9r3So3T9cy4mqb5XlwqKMIjsBIIxyRka0dW4qaVVy0dsA=,iv:lFonTsK7PBsSrygEzC/dB84Os5Dn0YsE1I7fi79W8Ho=,tag:oqutp3mD8B1EeUvqbiyYyg==,type:str]
   encrypted_regex: ^(data|hostname|hostnames)$
   version: 3.10.2
 ---
@@ -66,13 +64,13 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt
       listeners:
         web:
-          hostname: ENC[AES256_GCM,data:ys0H6auerSY=,iv:vS3KLhFvF7Y5b9fy1rTxcvKwQP8mMA5zJtW6cX7nsrE=,tag:RlKAimhY4ZybrYEd9UniXQ==,type:str]
+          hostname: ENC[AES256_GCM,data:le92wArZiSw=,iv:JOPs66C42LnLPkQVgSck8HsiW/fjNYRDxsVY1jNN+O0=,tag:TX8heXzTfTBIY7Qp6q7uhA==,type:str]
           namespacePolicy:
             from: All
         websecure:
           port: 8443
           protocol: HTTPS
-          hostname: ENC[AES256_GCM,data:xPhNSobkl9A=,iv:IpHWmysuniadDqXsuBQJxJyWPS+rCJGVuPvMRHir3GY=,tag:XCJZLtmsCsJhyuQgAPFY7A==,type:str]
+          hostname: ENC[AES256_GCM,data:/WM7Hk/2+Pk=,iv:8Ng0TgUgXe8wBCD5ua6HNdIHWXec/r2oUsevrRYsDTQ=,tag:nJUDrBx/1EgpkwHt6At9NA==,type:str]
           namespacePolicy:
             from: All
           certificateRefs:
@@ -93,7 +91,7 @@ sops:
         cWZWZVJXdFFkcW5UdFV4Rm1QS3ptemcKpGP2pr41hauezq+/IcOQZielkKT8jhXP
         qcA2K/27NapFIcWk0qmZX+Kp5I64Vv6xsGm3j7lOIe47yGSxRSZr9A==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-03T13:58:02Z"
-  mac: ENC[AES256_GCM,data:+e51j6I4/yXPF9h3KnNqNVNrs1RTq+x+2RgMkdTkOOOSkSgwU1U6VoIFnEUacqWRexBdot9NI2ZX6IegcVqPgCDrioCUegGeQdouvy21IsP2x5EXuaZZuQIXqS4AsVRvkiZAayPNJKPlaAaF1TaSO8yyHT9y5Qm8c/puNxsNCC8=,iv:OrKXnwG0lnOAcQ1Q4QwjQvgW7t4XRsZqaNZhHFceuGg=,tag:UipvzNZGJwapYVWTTrfCwA==,type:str]
+  lastmodified: "2026-01-02T23:34:49Z"
+  mac: ENC[AES256_GCM,data:EklIb40Rcx3V11unlSlU9yAEYkV5+CVLIq4Jv1pZJR+POnn3HmHZrFGwb2WKwX5YjD+IGOK1MHeBrWAa1W7gjMOIhL5bLAkq1szsqCTY37SBBstMd9f19W51YQg7VE9r3So3T9cy4mqb5XlwqKMIjsBIIxyRka0dW4qaVVy0dsA=,iv:lFonTsK7PBsSrygEzC/dB84Os5Dn0YsE1I7fi79W8Ho=,tag:oqutp3mD8B1EeUvqbiyYyg==,type:str]
   encrypted_regex: ^(data|hostname|hostnames)$
   version: 3.10.2
