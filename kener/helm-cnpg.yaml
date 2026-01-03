@@ -1,0 +1,48 @@
+---
+
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: cnpg
+spec:
+  interval: 24h
+  url: https://cloudnative-pg.github.io/charts
+
+---
+
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: postgres
+spec:
+  interval: 5s
+  chart:
+    spec:
+      sourceRef:
+        kind: HelmRepository
+        name: cnpg
+      chart: cluster
+      version: 0.3.1
+  values:
+    version:
+      postgresql: "18"
+
+    backups:
+      secret:
+        create: false
+
+    cluster:
+      initdb:
+        database: kener
+        owner: postgres
+      instances: 1
+      storage:
+        storageClass: longhorn
+        size: 8Gi
+      walStorage:
+        storageClass: longhorn
+        size: 1Gi
+
+    recovery:
+      secret:
+        create: false

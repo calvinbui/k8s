@@ -1,0 +1,41 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kener
+  labels:
+    app: kener
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kener
+  template:
+    metadata:
+      labels:
+        app: kener
+    spec:
+      containers:
+        - name: kener
+          image: docker.io/rajnandan1/kener:3.2.19
+          env:
+            -
+              name: TZ
+              value: Australia/Sydney
+            -
+              name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-cluster-app
+                  key: fqdn-uri
+          envFrom:
+            - secretRef:
+                name: kener
+          volumeMounts:
+            - name: uploads
+              mountPath: /app/uploads
+      volumes:
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: kener-uploads

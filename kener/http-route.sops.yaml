@@ -1,0 +1,39 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: kener
+spec:
+  hostnames:
+    - ENC[AES256_GCM,data:ueJnQxrzCg5JSrMktg==,iv:hTFSxh/VdsYavhfnbmq3ZvHtTk5JLqQzQ9dVwTMXFrs=,tag:kZJ30Apj5lBgVvicR/Rhig==,type:str]
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: traefik-gateway
+      namespace: traefik
+      sectionName: websecure
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: kener
+          port: 3000
+          weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
+sops:
+  age:
+    - recipient: age1mz6mvlp9fu44qpr29lrpuw57y9akt8upx7w43zdz83kgatnufu7q7mvtvr
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBpbzU0NzVOa3RyMGQ1ZHIv
+        Q0V1TUIva3JQcEJEeGU0WVhya2R4Rm15YmowCnh3U05UcVVrdlpOOVYxWS9CMXk1
+        cVdiWUlvZHpsQ1Y1OTcyQUhUc3A1NWMKLS0tIGh3cnYwQmFKOUJJMHZCTlIvemNj
+        elJuQmFzemwwTEh5NDcveS9jSHg1U3MK5qCQfI5GQUnzXeFg9uZSkN37GTWFUbiO
+        zRAPPR0ITe4VSHTkgfkQfqMibl9gW61m60lzYCOBPKcMaCf6VESxyQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-01-03T03:02:21Z"
+  mac: ENC[AES256_GCM,data:042LLpO+AnamF0rx2WAMN3DgOgj8zuwa/aaFemhv13/Xg95nVdiLQlpJcmbruGW95i5Uuf/1DpNMnSuGYXPusWHIJMl0bY2nWSlET7m08g8FM7wTjykF0gNwpOXZpDIxNqFYkpHzc6dwWMNCUVo7XQbAjMt65DaA2PAQmj15PlI=,iv:E7FsfsTAxIA/1zaDaGumFmR+4L8+9/7VIKVfPO/lkG0=,tag:2C2ieyIXJlXxiMN8McCtJA==,type:str]
+  encrypted_regex: ^(data|hostname|hostnames)$
+  version: 3.11.0
