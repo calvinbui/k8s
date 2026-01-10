@@ -6,6 +6,7 @@ Kubernetes deployment manifests for my cluster.
 
 - `kubectl`
 - `kustomize`
+- `ksops`
 
 ## Flux CRDs
 
